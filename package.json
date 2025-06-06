@@ -1,0 +1,25 @@
+{
+    "name": "orderflow",
+    "version": "1.0.0",
+    "description": "Desafio técnico - Vertical Logistica (LuizaLabs)",
+    "main": "dist/app.js",
+    "scripts": {
+        "start": "ts-node src/app.ts",
+        "build": "tsc",
+        "test": "jest --coverage",
+        "lint": "eslint . --ext .ts",
+        "prepare": "npm run build",
+        "test-parser": "ts-node scripts/test-parser.ts"
+    },
+    "keywords": [],
+    "author": "Seu Nome",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "^29.5.14",
+        "eslint": "^8.0.0",
+        "jest": "^29.0.0",
+        "ts-jest": "^29.0.0",
+        "ts-node": "^10.0.0",
+        "typescript": "^5.0.0"
+    }
+}
