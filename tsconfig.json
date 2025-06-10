@@ -7,8 +7,8 @@
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "skipLibCheck": true,
-      "rootDir": "src"
+      "rootDir": "."
     },
-    "include": ["src", "src/tests"]
+    "include": ["src/**/*", "tests/**/*", "tests/parser.test.ts"]
   }
   
