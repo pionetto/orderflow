@@ -9,7 +9,8 @@
         "test": "jest --coverage",
         "lint": "eslint . --ext .ts",
         "prepare": "npm run build",
-        "test-parser": "ts-node scripts/test-parser.ts"
+        "test-parser": "ts-node scripts/test-parser.ts",
+        "test-normalizer": "ts-node scripts/test-normalizer.ts"
     },
     "keywords": [],
     "author": "Seu Nome",
