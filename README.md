@@ -1,6 +1,7 @@
 # OrderFlow API
 
 API REST em Node.js + TypeScript para processamento e normalização de arquivos de pedidos do sistema legado.
+O objetivo desta API é receber um arquivo .txt de um sistema legado via endpoint, com estrutura desnormalizada, realizar um parse e normalizar para uma estrutura aninhada em formato json, ou seja, adequado para comunicar com outros sistemas disponibilizando isto também via API.
 
 ---
 
@@ -36,6 +37,7 @@ Cada linha do arquivo deve conter:
 | valor produto | 12      | decimal  |
 | data compra   | 8       | numérico (Formato yyyymmdd)|
 
+### Exemplo de uma linha do arquivo
 ```
 0000000002Medeiros                                   00000123450000000111256.2420201201
 ```
@@ -70,7 +72,7 @@ curl "http://localhost:3000/orders"
 
 #### Filtro por pedido
 ```bash
-curl "http://localhost:3000/orders?orderId=12345"
+curl "http://localhost:3000/orders?orderId=753"
 ```
 
 #### Filtro por intervalo de data inicial e final
@@ -78,7 +80,12 @@ curl "http://localhost:3000/orders?orderId=12345"
 curl "http://localhost:3000/orders?startDate=2020-12-01&endDate=2021-12-31"
 ```
 
-## :bookmark_tabs: Exemplo de resposta normalizada
+#### Filtro por intervalo de pedido, data inicial e final
+```bash
+curl "http://localhost:3000/orders?orderId=673&startDate=2020-12-01&endDate=2021-12-31"
+```
+
+## :bookmark_tabs: Exemplo de resposta parseada e normalizada
 
 ```json
 [
