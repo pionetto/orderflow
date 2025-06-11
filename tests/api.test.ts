@@ -55,10 +55,11 @@ describe('API REST', () => {
     expect(res.body.length).toBe(0);
   });
 
-  it('deve recusar upload sem arquivo', async () => {
-    const res = await request(app).post('/upload');
-    expect(res.status).toBe(400);
-    expect(res.body.error).toBeDefined();
+  it('deve retornar array vazio ao fazer GET /orders antes de qualquer upload', async () => {
+    const res = await request(app).get('/orders');
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    expect(res.body.length).toBe(0);
   });
 
   it('deve aceitar upload correto e retornar dados normalizados', async () => {
@@ -118,5 +119,42 @@ describe('API REST', () => {
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
     expect(res.body.length).toBe(0);
+  });
+
+  it('faz upload, retorna dados e aceita filtros válidos', async () => {
+    const up = await request(app).post('/upload').attach('file', testFile);
+    expect(up.status).toBe(200);
+    expect(Array.isArray(up.body)).toBe(true);
+
+    const res1 = await request(app).get('/orders');
+    expect(res1.status).toBe(200);
+    expect(res1.body.length).toBe(2);
+
+    const res2 = await request(app).get('/orders?orderId=12345');
+    expect(res2.status).toBe(200);
+    expect(res2.body.length).toBe(1);
+    expect(res2.body[0].user_id).toBe(2);
+
+    const res3 = await request(app).get('/orders?startDate=2020-12-01&endDate=2020-12-01');
+    expect(res3.status).toBe(200);
+    expect(res3.body.length).toBe(1);
+    expect(res3.body[0].user_id).toBe(2);
+
+    const res4 = await request(app).get('/orders?orderId=123&startDate=2021-12-01');
+    expect(res4.status).toBe(200);
+    expect(res4.body.length).toBe(1);
+    expect(res4.body[0].user_id).toBe(1);
+  });
+
+  it('retorna erro com orderId inválido', async () => {
+    const res = await request(app).get('/orders?orderId=abc');
+    expect(res.status).toBe(400);
+    expect(res.body.error).toMatch(/orderId deve ser um número/i);
+  });
+
+  it('retorna erro com data inválida', async () => {
+    const res = await request(app).get('/orders?startDate=2021-31-01');
+    expect(res.status).toBe(400);
+    expect(res.body.error).toMatch(/startDate inválida/i);
   });
 });
