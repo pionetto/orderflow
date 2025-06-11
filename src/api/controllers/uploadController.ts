@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { OrderFileParser } from '../../core/parser';
 import { normalizeOrders } from '../../core/normalizer';
+import { NormalizedUser } from '../../types/NormalizedOrder';
 
-let lastNormalized: any[] = [];
+let lastNormalized: NormalizedUser[] = [];
 
 export const uploadController = (req: Request, res: Response): void => {
   const file = req.file;

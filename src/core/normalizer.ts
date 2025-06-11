@@ -1,5 +1,5 @@
 import { OrderLine } from '../types/OrderLine';
-import { NormalizedUser, NormalizedOrder, NormalizedProduct } from '../types/NormalizedOrder';
+import { NormalizedUser } from '../types/NormalizedOrder';
 
 function formatDate(date: string): string {
 

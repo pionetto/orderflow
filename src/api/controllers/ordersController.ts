@@ -1,12 +1,13 @@
 import { Request, Response } from 'express';
 import { lastNormalized } from './uploadController';
+import { NormalizedOrder } from '../../types/NormalizedOrder';
 
 function isValidDate(date: string): boolean {
   return /^\d{4}-\d{2}-\d{2}$/.test(date) && !isNaN(new Date(date).getTime());
 }
 
 export const ordersController = (req: Request, res: Response): void => {
-  let data = lastNormalized;
+  const data = lastNormalized;
 
   if (!Array.isArray(data) || data.length === 0) {
     res.status(200).json([]);
@@ -33,7 +34,7 @@ export const ordersController = (req: Request, res: Response): void => {
     filtered = filtered
       .map(user => ({
         ...user,
-        orders: user.orders.filter((order: any) => order.order_id === Number(orderId)),
+        orders: user.orders.filter((order: NormalizedOrder) => order.order_id === Number(orderId)),
       }))
       .filter(user => user.orders.length > 0);
   }
@@ -44,7 +45,7 @@ export const ordersController = (req: Request, res: Response): void => {
     filtered = filtered
       .map(user => ({
         ...user,
-        orders: user.orders.filter((order: any) => {
+        orders: user.orders.filter((order: NormalizedOrder) => {
           const orderDate = new Date(order.date + 'T00:00:00');
           const afterStart = start ? orderDate >= start : true;
           const beforeEnd = end ? orderDate <= end : true;

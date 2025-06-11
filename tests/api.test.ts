@@ -2,6 +2,7 @@ import request from 'supertest';
 import app from '../src/api/server';
 import fs from 'fs';
 import path from 'path';
+import { NormalizedUser } from '../src/types/NormalizedOrder';
 
 function createTestFile(content: string, filename = 'pedidos-test.txt') {
   const filePath = path.join(__dirname, filename);
@@ -70,7 +71,7 @@ describe('API REST', () => {
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
     expect(res.body.length).toBe(2);
-    const user = res.body.find((u: any) => u.user_id === 2);
+    const user = res.body.find((u: NormalizedUser) => u.user_id === 2);
     expect(user).toBeDefined();
     expect(user.orders[0].order_id).toBe(12345);
     expect(user.orders[0].products.length).toBe(2);
