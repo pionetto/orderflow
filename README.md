@@ -120,4 +120,19 @@ npm test -- --coverage
 
 * Lógica desacoplada para facilitar manutenção e extensão.
 
+## :rocket: Automação (Build, Coverage e Qualidade de Código)
+Este projeto está totalmente automatizado com integração contínua via GitHub Actions.
+A cada push ou pull request, o pipeline executa automaticamente:
+
+* Build do projeto
+
+* Execução dos testes automatizados
+
+* Geração de relatório de cobertura de testes
+
+* Análise de qualidade de código via SonarCloud, incluindo verificação do Quality Gate e acompanhamento de bugs, code smells e cobertura mínima de testes.
+
+Isso garante que todo o fluxo de build, testes e análise de qualidade seja realizado de forma automática, atendendo o item de automação exigido no desafio técnico.
+
+
 **Desafio resolvido por Pio Lima, aplicando Clean Code, SOLID e foco em simplicidade.**
