@@ -1,5 +1,6 @@
 import { OrderFileParser } from './core/parser';
 import { normalizeOrders } from './core/normalizer';
+import './api/server';
 
 const lines = [
   '0000000002Medeiros                                   00000123450000000111256.2420201201',
