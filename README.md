@@ -117,7 +117,7 @@ curl "http://localhost:3000/orders?orderId=673&startDate=2020-12-01&endDate=2021
 npm test -- --coverage
 ```
 
-## :bulb: Decisões arquiteturais e SOLID
+## :bulb: Decisões arquiteturais e SOLID e sobre persistência
 
 * Separação de responsabilidades: parser, normalizador e API REST.
 
@@ -126,6 +126,12 @@ npm test -- --coverage
 * Testes automatizados desde a base.
 
 * Lógica desacoplada para facilitar manutenção e extensão.
+
+* O desafio permite persistência em memória, arquivo ou banco de dados.
+
+* Nesta solução, optei por persistência em memória para priorizar simplicidade, clareza da lógica e experiência de quem for rodar/testar o projeto.
+
+* Toda a arquitetura está preparada para evoluir facilmente para persistência em banco de dados (PostgreSQL, SQLite, etc) ou integração com filas, caso a escala futura do projeto exija.
 
 ## :rocket: Automação (Build, Coverage e Qualidade de Código)
 Este projeto está totalmente automatizado com integração contínua via GitHub Actions.
