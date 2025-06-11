@@ -5,4 +5,3 @@ module.exports = {
     roots: ['<rootDir>/tests'],
     coverageDirectory: 'coverage'
   };
-  
